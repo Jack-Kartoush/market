@@ -37,13 +37,13 @@
     <div class="navbar d-block">
       <div class="menu d-flex justify-content-around p-4">
         <div class="main-nav">
-          <button class="btn btn-primary" @click="tab = 'bid'">bid</button>
-          <button class="btn btn-primary" @click="tab = 'History'">
+          <button class="item btn btn-primary" @click="tab = 'bid'">bid</button>
+          <button class="item btn btn-primary" @click="tab = 'History'">
             History
           </button>
         </div>
         <button
-          class="btn btn-outline-danger deleteBtn"
+          class=" btn btn-outline-danger deleteBtn"
           @click="deleteAllItem()"
         >
           Delete All
@@ -96,20 +96,22 @@
       >
         <span>{{ history.userBid }} $</span>
         <span>{{ history.currentDate }}</span>
+        <div class="nav-menu">
         <button
-          class="btn btn-outline-danger deleteBtn"
+          class="btn btn-outline-danger  "
           @click="deleteHistoryItem(index)"
         >
           <i class="fa-solid fa-trash-can"></i>
         </button>
         <button
-          class="btn btn-primary"
+          class="btn btn-primary ms-3"
           title="return it to the bid records"
           @click="returnDeletedItems(index)"
           v-show="!bids.filter((bid) => bid.ID === history.ID).length"
         >
           <i class="fa-solid fa-rotate-left"></i>
         </button>
+        </div>
       </div>
     </div>
   </section>

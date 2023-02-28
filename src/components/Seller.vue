@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="d-flex align-items-end justify-content-end p-3">
-        <button class="btn btn-primary mt-3 add" type="submit" @click="addSell">
+        <button class="btn btn-primary mt-3 add " type="submit" @click="addSell">
           Add
         </button>
       </div>
@@ -53,13 +53,14 @@
         <span>{{ sell.name }}</span>
         <span>{{ sell.price }} $</span>
         <span>{{ sell.stockNumber }}</span>
-
-        <button class="btn btn-outline-danger deleteBtn" @click="deleteSellsItems(index)">
+        <div class="nav-menu">
+        <button class="btn btn-outline-danger" @click="deleteSellsItems(index)">
           <i class="fa-solid fa-trash-can"></i>
         </button>
-        <button class="btn btn-primary" type="submit" @click="setUserAndStock(sell.name)">
+        <button class="btn btn-primary ms-3 item" type="submit" @click="setUserAndStock(sell.name)">
           Bid
         </button>
+        </div>
       </div>
     </div>
   </section>

@@ -51,34 +51,29 @@ const Stock = ref("BMW");
 const openMarket = new Date();
 const closeMarketDate = new Date(openMarket.getFullYear() + 1, 0, 1);
 const time = closeMarketDate - openMarket;
-
 onMounted(() => {
-
-  showUser.value = JSON.parse(localStorage.getItem("showUser") || [showUser.value])
-   Stock.value = JSON.parse(localStorage.getItem("Stock") || "[]");
+  showUser.value = JSON.parse(localStorage.getItem("showUser") || ["seller"]);
+  Stock.value = JSON.parse(localStorage.getItem("Stock") || ["BMW"]);
 }),
-
-watch(showUser, (role) =>{
-  console.log(`role is ${role}`)
-  localStorage.setItem("showUser", JSON.stringify(showUser.value));
-
-})
+  watch(showUser, (role) => {
+    console.log(`role is ${role}`);
+    localStorage.setItem("showUser", JSON.stringify(showUser.value));
+  });
 
 function setUserTo(role) {
   console.log("Setting role to", role);
   showUser.value = role;
-  localStorage.setItem("showUser", JSON.stringify(showUser.value));
+  localStorage.setItem("showUser", JSON.stringify(role));
 }
 
-watch(Stock, (stockName) =>{
-  console.log(`stockName is ${stockName}`)
+watch(Stock, (stockName) => {
+  console.log(`stockName is ${stockName}`);
   localStorage.setItem("Stock", JSON.stringify(Stock.value));
-
-})
+});
 
 function setStock(stockName) {
   console.log("Setting stockName to", stockName);
   Stock.value = stockName;
- 
+  localStorage.setItem("Stock", JSON.stringify(stockName));
 }
 </script>
