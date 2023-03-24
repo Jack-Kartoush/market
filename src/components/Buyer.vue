@@ -23,15 +23,18 @@
     </div>
   </section>
   <section class="buyer-body">
-    <div class="d-flex justify-content-around" v-for="Stock in currentStock" >
+    <div class="d-flex justify-content-around" v-for="Stock in currentStock">
       <div class="ask text-white p-2 text-center">
         <span>{{ Stock.name }} {{ Stock.stockNumber }} stock</span>
-        <p >Ask: {{ Stock.price }} $</p>
+        <p>Ask: {{ Stock.price }} $</p>
       </div>
 
       <div class="highest_bid text-white p-2 text-center">
         <span>Highest Bid</span>
-        <p v-for="bid in limit">{{ bid.userBid }} $</p>
+        <div class="d-flex justify-content-center" >
+           <p>-</p>
+          <p v-for="bid in limit" class="ms-2">{{ bid.userBid }} $</p>
+        </div>
       </div>
     </div>
     <div class="navbar d-block">
@@ -43,7 +46,7 @@
           </button>
         </div>
         <button
-          class=" btn btn-outline-danger deleteBtn"
+          class="btn btn-outline-danger deleteBtn"
           @click="deleteAllItem()"
         >
           Delete All
@@ -97,20 +100,20 @@
         <span>{{ history.userBid }} $</span>
         <span>{{ history.currentDate }}</span>
         <div class="nav-menu">
-        <button
-          class="btn btn-outline-danger  "
-          @click="deleteHistoryItem(index)"
-        >
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-        <button
-          class="btn btn-primary ms-3"
-          title="return it to the bid records"
-          @click="returnDeletedItems(index)"
-          v-show="!bids.filter((bid) => bid.ID === history.ID).length"
-        >
-          <i class="fa-solid fa-rotate-left"></i>
-        </button>
+          <button
+            class="btn btn-outline-danger"
+            @click="deleteHistoryItem(index)"
+          >
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <button
+            class="btn btn-primary ms-3"
+            title="return it to the bid records"
+            @click="returnDeletedItems(index)"
+            v-show="!bids.filter((bid) => bid.ID === history.ID).length"
+          >
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -133,7 +136,6 @@ const historys = ref([]);
 const userBid = ref();
 const Sells = ref([]);
 let ID = 0;
-
 const tab = ref("bid");
 const currentDate = new Date().toISOString().slice(0, 10);
 onMounted(() => {
@@ -186,8 +188,10 @@ function returnDeletedItems(index) {
 const currentStock = computed(() => {
   // const stockName = Stock.value.filter((getName) => getName.id);
   // console.log("currentStock", stockName);
-  const stockId = Sells.value.filter((sellOrder) => sellOrder.name === Stock.value);
-  return stockId
+  const stockId = Sells.value.filter(
+    (sellOrder) => sellOrder.name === Stock.value
+  );
+  return stockId;
 });
 console.log("currentStock", currentStock.value);
 // const getStockName = computed (() =>{

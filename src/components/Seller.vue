@@ -62,7 +62,8 @@
         </button>
         </div>
       </div>
-    </div>
+    </div> 
+    <h1 class="text-center opacity-50 fw-bold" v-show="Sells == ''">Make your trad</h1>
   </section>
 </template>
 <script setup>
@@ -81,10 +82,14 @@ onMounted(() => {
 });
 
 function addSell() {
-  // if(!name.value || !price.value || !stockNumber.value){
-  //   alert("Ther is a on filled fild ")
-  //   return;
-  // }
+  if(!name.value || !price.value || !stockNumber.value){
+    alert("There is an empty filed, please fill all the fild")
+    name.value = null;
+    price.value = null;
+    stockNumber.value = null;
+    return;
+  }
+ 
   Sells.value.push({
     id: id,
     name: name.value,
