@@ -31,10 +31,10 @@
 
       <div class="highest_bid text-white p-2 text-center">
         <span>Highest Bid</span>
-        <div class="d-flex justify-content-center" >
-           <p>-</p>
-          <p v-for="bid in limit" class="ms-2">{{ bid.userBid }} $</p>
-        </div>
+        
+           <p v-show="bids == ''">-</p>
+          <p v-for="bid in limit">{{ bid.userBid }} $</p>
+      
       </div>
     </div>
     <div class="navbar d-block">
@@ -149,6 +149,10 @@ onMounted(() => {
 });
 
 function addBid() {
+  if(!userBid.value){
+    alert("There is an empty filed, please fill all the fild")
+    return;
+  }
   bids.value.push({
     ID: ID,
     userBid: userBid.value,

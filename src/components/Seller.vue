@@ -96,10 +96,7 @@ function addSell() {
     price: price.value,
     stockNumber: stockNumber.value,
   });
-  // Stock.value.push({
-  //   id: id,
-  //   name: name.value,
-  // });
+
 
   localStorage.setItem("Sells", JSON.stringify(Sells.value));
   // localStorage.setItem("Stock", JSON.stringify(Stock.value));
